@@ -196,11 +196,6 @@ rhive.querry("use <<database name>>")
 rhive.querry(" << insert into table querry taking values from test >>")
 
 
-
-
-
-
-
 #<--------------------------------------------------------------------------------------------------------------------->
 gender <- function(filePath) 
 {
