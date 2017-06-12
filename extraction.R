@@ -172,14 +172,13 @@ processFolder <- function(folderName) {
   acoustics
 }
 
-# Load data
+# Load data from wav files in folder for feature extraction  
 test <- processFolder('test')
-
 test$duration <- NULL
 test$sound.files <- NULL
 test$selec <- NULL
-test$peakf <- NULL
-
+test$peakf <- NULL  
+  
 #if(class(test))
 #inp <- data.frame()
 #colnames(inp) <- c("duration", "meanfreq", "sd", "median", "Q25", "Q75", "IQR", "skew", "kurt", "sp.ent", 
@@ -195,32 +194,5 @@ rhiveConnecton <- rhive.connect()
 rhive.querry("use <<database name>>")
 rhive.querry(" << insert into table querry taking values from test >>")
 #<--------------------------------------------------------------------------------------------------------------------->
-gender <- function(filePath) 
-{
-  if (!exists('genderBoosted')) 
-  {
-    load('model.bin')
-  }
   
-  # Setup paths.
-  currentPath <- getwd()
-  fileName <- basename(filePath)
-  path <- dirname(filePath)
   
-  # Set directory to read file.
-  setwd(path)
-  
-  # Start with empty data.frame.
-  data <- data.frame(fileName, 0, 0, 20)
-  
-  # Set column names.
-  names(data) <- c('sound.files', 'selec', 'start', 'end')
-  
-  # Process files.
-  acoustics <- specan3(data, parallel=1)
-  
-  # Restore path.
-  setwd(currentPath)
-  
-  predict(genderCombo, newdata=acoustics)
-}
